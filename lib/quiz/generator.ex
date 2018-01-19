@@ -12,14 +12,25 @@ defmodule Quiz.Generator do
 		|> trunc()
 	end
 
-	defp inject_questions(list) do
-		inject_questions(list, Quiz.Questions.strands, [])
-	end
+	defp inject_questions(list), do: inject_questions(list, Quiz.Questions.strands, [])
 	defp inject_questions([], _, questions), do: questions
-	defp inject_questions([head | tail], [strand | strand_tail], questions) do
-		question_chunk =
-			head
-			|> Enum.map(fn _ -> Quiz.Questions.sample_by_strand(strand) end)
-		inject_questions(tail, strand_tail, questions ++ question_chunk)
+	defp inject_questions([chunk | chunks], [strand | strands], questions) do
+		standards =
+			Quiz.Questions.standards(strand)
+			|> Stream.cycle()
+			|> Enum.take(length(chunk))
+
+		question_chunk = inject_questions_to_chunk(standards, strand, [])
+
+		inject_questions(chunks, strands, questions ++ question_chunk)
+	end
+
+	defp inject_questions_to_chunk([], _, questions_chunk), do: questions_chunk
+	defp inject_questions_to_chunk([standard | standards], strand, questions_chunk) do
+		inject_questions_to_chunk(
+			standards,
+			strand,
+			[Quiz.Questions.sample_by_strand_and_standard(strand, standard) | questions_chunk]
+		)
 	end
 end
