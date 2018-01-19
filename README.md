@@ -6,4 +6,11 @@ An application that chooses quiz questions, keeping an equal distribution of str
 
 ```shell
 > mix deps.get
+> mix escript.build
+```
+
+## Run the app
+
+```shell
+> ./quiz {number_of_questions} # number_of_questions should be a number greater than 0
 ```
