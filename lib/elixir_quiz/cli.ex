@@ -12,7 +12,9 @@ defmodule ElixirQuiz.CLI do
 
     cond do
       number_of_questions =~ ~r/\A\d+\z/ && String.to_integer(number_of_questions) > 0 ->
-        ElixirQuiz.Generator.generate(String.to_integer(number_of_questions))
+        number_of_questions
+        |> String.to_integer()
+        |> ElixirQuiz.Generator.generate()
         |> Stream.map(fn question -> question.question_id end)
         |> Enum.join(", ")
         |> IO.puts()

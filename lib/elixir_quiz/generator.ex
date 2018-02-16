@@ -1,4 +1,6 @@
 defmodule ElixirQuiz.Generator do
+  alias ElixirQuiz.Questions
+
   def generate(number_of_questions) do
     1..number_of_questions
     |> Enum.chunk_every(chunk_length(number_of_questions))
@@ -7,17 +9,17 @@ defmodule ElixirQuiz.Generator do
 
   defp chunk_length(number_of_questions) do
     number_of_questions
-    |> Kernel./(length(ElixirQuiz.Questions.strands()))
+    |> Kernel./(length(Questions.strands()))
     |> Float.ceil()
     |> trunc()
   end
 
-  defp inject_questions(list), do: inject_questions(list, ElixirQuiz.Questions.strands(), [])
+  defp inject_questions(list), do: inject_questions(list, Questions.strands(), [])
   defp inject_questions([], _, questions), do: questions
 
   defp inject_questions([chunk | chunks], [strand | strands], questions) do
     standards =
-      ElixirQuiz.Questions.standards(strand)
+      Questions.standards(strand)
       |> Stream.cycle()
       |> Enum.take(length(chunk))
 
@@ -30,7 +32,7 @@ defmodule ElixirQuiz.Generator do
 
   defp inject_questions_to_chunk([standard | standards], strand, questions_chunk) do
     inject_questions_to_chunk(standards, strand, [
-      ElixirQuiz.Questions.sample_by_strand_and_standard(strand, standard) | questions_chunk
+      Questions.sample_by_strand_and_standard(strand, standard) | questions_chunk
     ])
   end
 end
