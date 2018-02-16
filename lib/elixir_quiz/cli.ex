@@ -1,4 +1,4 @@
-defmodule Quiz.CLI do
+defmodule ElixirQuiz.CLI do
   def main(argv) do
     argv
     |> OptionParser.parse()
@@ -12,7 +12,7 @@ defmodule Quiz.CLI do
 
     cond do
       number_of_questions =~ ~r/\A\d+\z/ && String.to_integer(number_of_questions) > 0 ->
-        Quiz.Generator.generate(String.to_integer(number_of_questions))
+        ElixirQuiz.Generator.generate(String.to_integer(number_of_questions))
         |> Stream.map(fn question -> question.question_id end)
         |> Enum.join(", ")
         |> IO.puts()
@@ -23,7 +23,7 @@ defmodule Quiz.CLI do
   end
 
   def print_usage() do
-    IO.puts("Usage: ./quiz {number_of_questions}")
+    IO.puts("Usage: ./elixir_quiz {number_of_questions}")
     IO.puts("number_of_questions needs to be a positive integer")
   end
 end

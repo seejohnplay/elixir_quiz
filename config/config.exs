@@ -10,11 +10,11 @@ use Mix.Config
 
 # You can configure your application as:
 #
-#     config :quiz, key: :value
+#     config :elixir_quiz, key: :value
 #
 # and access this configuration in your application as:
 #
-#     Application.get_env(:quiz, :key)
+#     Application.get_env(:elixir_quiz, :key)
 #
 # You can also configure a 3rd-party app:
 #

@@ -1,4 +1,4 @@
-# Quiz
+# ElixirQuiz
 
 An application that chooses quiz questions, keeping an equal distribution of strands and standards in mind.
 
@@ -12,5 +12,5 @@ An application that chooses quiz questions, keeping an equal distribution of str
 ## Run the app
 
 ```shell
-> ./quiz {number_of_questions} # number_of_questions should be a number greater than 0
+> ./elixir_quiz {number_of_questions} # number_of_questions should be a number greater than 0
 ```

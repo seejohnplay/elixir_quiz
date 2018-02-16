@@ -1,8 +1,8 @@
-defmodule QuizTest do
+defmodule ElixirQuizTest do
   use ExUnit.Case
-  doctest Quiz
+  doctest ElixirQuiz
 
   test "greets the world" do
-    assert Quiz.hello() == :world
+    assert ElixirQuiz.hello() == :world
   end
 end

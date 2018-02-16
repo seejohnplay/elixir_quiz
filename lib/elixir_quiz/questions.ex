@@ -1,4 +1,4 @@
-defmodule Quiz.Questions do
+defmodule ElixirQuiz.Questions do
   def start_link do
     Agent.start_link(&questions/0, name: __MODULE__)
   end

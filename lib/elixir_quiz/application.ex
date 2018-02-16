@@ -1,4 +1,4 @@
-defmodule Quiz.Application do
+defmodule ElixirQuiz.Application do
   @moduledoc false
 
   use Application
@@ -7,12 +7,12 @@ defmodule Quiz.Application do
     import Supervisor.Spec
 
     children = [
-      worker(Quiz.Questions, [])
+      worker(ElixirQuiz.Questions, [])
     ]
 
     opts = [
       strategy: :one_for_one,
-      name: Quiz.Supervisor
+      name: ElixirQuiz.Supervisor
     ]
 
     Supervisor.start_link(children, opts)

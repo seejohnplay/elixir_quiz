@@ -1,6 +1,6 @@
-defmodule Quiz do
+defmodule ElixirQuiz do
   @moduledoc """
-  Documentation for Quiz.
+  Documentation for ElixirQuiz.
   """
 
   @doc """
@@ -8,7 +8,7 @@ defmodule Quiz do
 
   ## Examples
 
-      iex> Quiz.hello
+      iex> ElixirQuiz.hello
       :world
 
   """
